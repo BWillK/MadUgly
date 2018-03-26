@@ -9,6 +9,7 @@ end
 gem 'semantic-ui-sass'
 gem 'activeadmin'
 gem 'devise'
+gem 'carrierwave'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
