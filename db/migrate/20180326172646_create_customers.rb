@@ -1,6 +1,5 @@
 class CreateCustomers < ActiveRecord::Migration[5.1]
   def change
-    drop_table :customers
     create_table :customers do |t|
       t.string :first_name
       t.string :last_name
@@ -8,6 +7,7 @@ class CreateCustomers < ActiveRecord::Migration[5.1]
       t.string :address
       t.string :email
       t.references :user, foreign_key: true
+      t.references :cate
 
       t.timestamps
     end

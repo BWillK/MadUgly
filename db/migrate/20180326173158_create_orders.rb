@@ -1,6 +1,5 @@
 class CreateOrders < ActiveRecord::Migration[5.1]
   def change
-    drop_table :orders
     create_table :orders do |t|
       t.references :customer, foreign_key: true
       t.decimal :total, precision: 20, scale: 2
