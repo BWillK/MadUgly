@@ -7,7 +7,6 @@ class CreateCustomers < ActiveRecord::Migration[5.1]
       t.string :address
       t.string :email
       t.references :user, foreign_key: true
-      t.references :cate
 
       t.timestamps
     end
