@@ -1,4 +1,4 @@
 class Category < ApplicationRecord
-  has_many :products
-  has_many :products, through: :product_categories
+  belongs_to :product
+  validates :name, presence: true
 end
