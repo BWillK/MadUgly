@@ -10,6 +10,7 @@ gem 'semantic-ui-sass'
 gem 'activeadmin'
 gem 'devise'
 gem 'carrierwave'
+gem 'mini_magick'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
