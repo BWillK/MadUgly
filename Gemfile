@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Project Specific Gems
-gem 'semantic-ui-sass'
+gem 'bootstrap'
 gem 'activeadmin'
 gem 'devise'
 gem 'carrierwave'
