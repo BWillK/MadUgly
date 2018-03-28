@@ -7,4 +7,25 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      a.navbar-brand href="#"  MADUgly
+      button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button"
+        span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto
+          li.nav-item.active
+            a.nav-link href=root_path
+              | Home
+              span.sr-only (current)
+          li.nav-item
+            a.nav-link href="#"  About
+          li.nav-item.dropdown
+            a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href=products_path role="button"
+              | Products
+            .dropdown-menu aria-labelledby="navbarDropdown"
+              - Category.all.each do |category|
+                a.dropdown-item href=category.id category.name
+        form.form-inline.my-2.my-lg-0
+          input.form-control.mr-sm-2 aria-label="Search" placeholder="Search" type="search" /
+          button.btn.btn-outline-success.my-2.my-sm-0 type="submit"  Search
     = yield

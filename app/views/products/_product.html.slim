@@ -1,10 +1,11 @@
-p = product.description
-div class="ui cards"&gt;
-.card
-  a.image
-    img src = product.image /
-  .content
-    a.header = product.name
-    .meta
-      a Description
-    .description = product.description
+.card style=("width: 18rem;")
+  img.card-img-top alt=("Card image cap") src = product.image /
+  .card-body
+    h5.card-title = product.name
+    p.card-text = product.description
+  ul.list-group.list-group-flush
+    li.list-group-item Cras justo odio
+    li.list-group-item Dapibus ac facilisis in
+    li.list-group-item Vestibulum at eros
+  .card-body
+    a.card-link = link_to 'More Details', product_path(product)
