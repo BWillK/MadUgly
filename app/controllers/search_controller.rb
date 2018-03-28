@@ -3,7 +3,6 @@ class SearchController < ApplicationController
     @search_terms = params[:q]
     @search_category = params[:p]
 
-    productSearch = @search_category.to_ruby.arel_table
-    @searchResults = @search_category.to_ruby.where(productSearch[:name].matches("%" + @search_terms + "%"))
+    @results = Category.find_by_name(@search_category).products.find_by name:
   end
 end
