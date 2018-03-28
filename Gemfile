@@ -5,12 +5,13 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-# My gems added after the fact
+# Project Specific Gems
 gem 'semantic-ui-sass'
 gem 'activeadmin'
 gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'slim-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
