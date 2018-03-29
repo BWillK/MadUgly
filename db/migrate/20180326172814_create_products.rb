@@ -6,6 +6,7 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.integer :quantity
       t.decimal :price, precision: 20, scale: 2
       t.boolean :active
+      t.string :image
 
       t.timestamps
     end

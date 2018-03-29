@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180327213624) do
+ActiveRecord::Schema.define(version: 20180326184239) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -65,10 +65,8 @@ ActiveRecord::Schema.define(version: 20180327213624) do
     t.string "address"
     t.string "email"
     t.integer "user_id"
-    t.integer "cate_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cate_id"], name: "index_customers_on_cate_id"
     t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
@@ -86,18 +84,10 @@ ActiveRecord::Schema.define(version: 20180327213624) do
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id"
     t.decimal "total", precision: 20, scale: 2
+    t.decimal "taxes", precision: 20, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"
-  end
-
-  create_table "product_categories", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_product_categories_on_category_id"
-    t.index ["product_id"], name: "index_product_categories_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -106,9 +96,9 @@ ActiveRecord::Schema.define(version: 20180327213624) do
     t.integer "quantity"
     t.decimal "price", precision: 20, scale: 2
     t.boolean "active"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "image"
   end
 
   create_table "users", force: :cascade do |t|
