@@ -1,2 +1,10 @@
-.card-deck
-  == render @results
+- unless @results == nil
+  .card-deck
+    = render @results
+- else
+  .row
+    div class="col-3"
+    div class="col-6"
+      p
+        | No items found, please try again. Thank you!
+    div class="col-3"

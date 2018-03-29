@@ -3,6 +3,6 @@ class SearchController < ApplicationController
     @search_terms = params[:q]
     @search_category = params[:p]
 
-    @results = Category.find_by_name(@search_category).products.find_by name:
+    @results = Product.all.joins(:product_categories).joins(:categories).where('category_id = ?', @search_category)
   end
 end
