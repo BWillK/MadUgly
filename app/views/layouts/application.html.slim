@@ -1,5 +1,6 @@
 doctype html
 html
+
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     title MadUgly
@@ -8,7 +9,7 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
-      a.navbar-brand href="#"  MADUgly
+      a.navbar-brand href=root_path  MADUgly
       button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarSupportedContent" data-toggle="collapse" type="button"
         span.navbar-toggler-icon
       #navbarSupportedContent.collapse.navbar-collapse
@@ -20,13 +21,25 @@ html
           li.nav-item
             a.nav-link href="#"  About
           li.nav-item.dropdown
-            a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href=products_path role="button"
-              | Products
+            a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+              | Dropdown
             .dropdown-menu aria-labelledby="navbarDropdown"
-              - Category.all.each do |category|
-                a.dropdown-item href=category.id category.name
+              -Category.all.each do |category|
+                a.dropdown-item href=category.id #{category.name}
+              / a.dropdown-item href="#"  Action
+              / a.dropdown-item href="#"  Another action
+              / .dropdown-divider
+              / a.dropdown-item href="#"  Something else here
+          li.nav-item.dropdown
         = form_tag search_path, method: :get, class: 'form.form-inline.my-2.my-lg-0' do
           = text_field_tag(:q)
-          = select_tag(:p, options_for_select(Category.all.map{|el| [el.name, el.id]}))
+          = select_tag(:p, options_for_select(Category.all.map {|el| [el.name, el.id]}))
           = submit_tag "Search", class: 'button.btn.btn-outline-success.my-2.my-sm-0'
-    = yield
+    == yield
+    javascript:
+        |
+        $(function () {
+        |
+            $('.dropdown-menu').dropdown('toggle');
+        |
+        });
