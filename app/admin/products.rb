@@ -1,4 +1,5 @@
 ActiveAdmin.register Product do
+  require "mini_magick"
   permit_params :name, :description, :quantity, :price, :active, :image, product_categories_attributes: [:id, :product_id, :category_id, :_destroy]
 
   form do |f|

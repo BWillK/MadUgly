@@ -25,11 +25,7 @@ html
               | Dropdown
             .dropdown-menu aria-labelledby="navbarDropdown"
               -Category.all.each do |category|
-                a.dropdown-item href=category.id #{category.name}
-              / a.dropdown-item href="#"  Action
-              / a.dropdown-item href="#"  Another action
-              / .dropdown-divider
-              / a.dropdown-item href="#"  Something else here
+                a.dropdown-item href=category_path(category.id) #{category.name}
           li.nav-item.dropdown
         = form_tag search_path, method: :get, class: 'form.form-inline.my-2.my-lg-0' do
           = text_field_tag(:q)
