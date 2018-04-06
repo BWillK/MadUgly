@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
 
+  get 'cart/index'
+
   get '/products/category/:id', to: 'products#category', as: 'category'
 
   get 'search/index'
 
   get 'user/index'
 
-  resources :products, only: [:index, :show, :category]
+  resources :products, only: [:index, :show, :category] do
+    collection do
+      post :clear_cart
+    end
+    member do
+      post :add_to_cart # POST /products/:d/add_to_cart
+    end
+  end
 
   root to: 'products#index'
 

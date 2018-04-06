@@ -8,4 +8,6 @@ class Product < ApplicationRecord
 
   validates :name, :description, presence: true
   validates :quantity, :price, presence: true, numericality: true
+
+  paginates_per 5
 end
