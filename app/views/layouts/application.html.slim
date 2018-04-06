@@ -22,7 +22,7 @@ html
             a.nav-link href="#"  About
           li.nav-item.dropdown
             a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
-              | Dropdown
+              | Categories
             .dropdown-menu aria-labelledby="navbarDropdown"
               -Category.all.each do |category|
                 a.dropdown-item href=category_path(category.id) #{category.name}
