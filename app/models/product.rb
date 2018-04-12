@@ -1,6 +1,9 @@
 class Product < ApplicationRecord
   has_many :product_categories
   has_many :categories, through: :product_categories
+  has_many :order_items
+
+  default_scope { where(active: true) }
 
   accepts_nested_attributes_for :product_categories, allow_destroy: true
 

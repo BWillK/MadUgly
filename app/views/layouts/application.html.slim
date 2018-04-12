@@ -27,14 +27,13 @@ html
               -Category.all.each do |category|
                 a.dropdown-item href=category_path(category.id) #{category.name}
           li.nav-item
-            a.nav-link href=cart_path Cart [#{session[:cart].count}]
+            / a.nav-link href=cart_path Cart [#{session[:cart].count}]
         = form_tag search_path, method: :get, class: 'form.form-inline.my-2.my-lg-0' do
           = text_field_tag(:q)
           = select_tag(:p, options_for_select(Category.all.map {|el| [el.name, el.id]}))
           = submit_tag "Search", class: 'button.btn.btn-outline-success.my-2.my-sm-0'
 
-    = debug session[:cart]
-    p = link_to 'Clear Cart', clear_cart_products_path, method: :post
+    h1.cart-text = render 'layouts/cart_text'
     = yield
     javascript:
         |

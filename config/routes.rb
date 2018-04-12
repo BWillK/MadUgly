@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
 
-  get 'cart/index', to: 'cart#index', as: 'cart'
+  get 'order_items/create'
+
+  get 'order_items/update'
+
+  get 'order_items/destroy'
+
+  get 'carts/show', to: 'carts#show', as: 'cart'
 
   get '/products/category/:id', to: 'products#category', as: 'category'
 
@@ -8,15 +14,10 @@ Rails.application.routes.draw do
 
   get 'user/index'
 
-  resources :products, only: [:index, :show, :category] do
-    collection do
-      post :clear_cart
-    end
-    member do
-      post :add_to_cart, as: 'add_to_cart' # POST /products/:id/add_to_cart
-      post :mark_in_cart # POST /products/:id/mark_in_cart
-    end
-  end
+  resources :products, only: [:index, :show, :category]
+  resource :carts, only: [:show]
+  resources :order_items, only: [:create, :update, :destroy]
+  resources :charges
 
   root to: 'products#index'
 

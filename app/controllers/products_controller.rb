@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.order(:name).page params[:page]
+    @order_item = current_order.order_items.new
   end
 
   def clear_cart
@@ -12,6 +13,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @order_item = current_order.order_items.new
   end
 
   def category

@@ -12,11 +12,12 @@ card style=("width: 18rem;")
       .li
         a.card-link = link_to 'More Details', product_path(product)
       .li
-        a.card-link = link_to 'Add to Cart', add_to_cart_product_path(product), method: :post
-        - if session[:cart].include?(product.id)
-          a.card-link = link_to 'Mark in Cart', mark_in_cart_product_path(product), method: :post
-        - else
-          = form_tag(add_to_cart_product_path(product)) do
-            = number_field_tag(:qty)
-            = hidden_field_tag(:id, product.id)
-            = submit_tag "Add to Cart", class: 'button.btn.btn-outline-success.my-2.my-sm-0'
+        = form_for @order_item do |f|
+          h4.text-right
+            | Unit Price:
+            span style=("color: green") = number_to_currency product.price
+          .input-group
+            = f.number_field :quantity, value: 1, class: "form-control", min: 1
+            .input-group-btn
+              = f.hidden_field :product_id, value: product.id
+              = f.submit "Add to Cart", class: "btn btn-primary"
