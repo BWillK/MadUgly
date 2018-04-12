@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   end
 
   def clear_cart
-    session[:cart] = nil
+    session[:cart] = []
     redirect_back(fallback_location: root_path)
   end
 
@@ -20,8 +20,15 @@ class ProductsController < ApplicationController
 
   def add_to_cart
     id = params[:id].to_i
-    session[:cart] << id
-    redirect_back(fallback_location: root_path)
+    qty = params[:qty].to_i
+    session[:cart] << [{:item => id, :quantity => qty}]
+    redirect_to cart_path
+  end
+
+  def mark_in_cart
+    id = params[:id].to_i
+    session[:cart].delete(id)
+    redirect_to cart_path
   end
 
   private

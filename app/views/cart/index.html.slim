@@ -1,2 +1,22 @@
-h1 Cart#index
-p Find me in app/views/cart/index.html.slim
+
+.row
+  .col-3
+  .col-6
+    h1 Shopping Cart
+    - if @inCart.empty?
+      p There are no items in your cart.
+    - else
+      table.table
+        tr
+          th = "Name"
+          th = "Quantity"
+        - session[:cart].each do |item|
+          tr
+            td.name = item[0]['item']
+            td.quantity = item[0]['quantity']
+            td
+
+
+  .col-3
+
+

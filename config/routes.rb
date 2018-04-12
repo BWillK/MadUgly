@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'cart/index'
+  get 'cart/index', to: 'cart#index', as: 'cart'
 
   get '/products/category/:id', to: 'products#category', as: 'category'
 
@@ -13,7 +13,8 @@ Rails.application.routes.draw do
       post :clear_cart
     end
     member do
-      post :add_to_cart # POST /products/:d/add_to_cart
+      post :add_to_cart, as: 'add_to_cart' # POST /products/:id/add_to_cart
+      post :mark_in_cart # POST /products/:id/mark_in_cart
     end
   end
 
