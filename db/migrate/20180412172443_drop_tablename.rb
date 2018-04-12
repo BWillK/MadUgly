@@ -1,6 +1,6 @@
 class DropTablename < ActiveRecord::Migration[5.1]
   def up
-    drop_table :order
+    drop_table :orders
   end
 
   def down

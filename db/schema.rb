@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180329011319) do
+ActiveRecord::Schema.define(version: 20180412172443) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -43,6 +43,21 @@ ActiveRecord::Schema.define(version: 20180329011319) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "cart_id"
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "quantity"
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["product_id"], name: "index_cart_items_on_product_id"
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -70,6 +85,24 @@ ActiveRecord::Schema.define(version: 20180329011319) do
     t.index ["user_id"], name: "index_customers_on_user_id"
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "order_id"
+    t.decimal "unit_price", precision: 12, scale: 3
+    t.integer "quantity"
+    t.decimal "total_price", precision: 12, scale: 3
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+  end
+
+  create_table "order_statuses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ordered_products", force: :cascade do |t|
     t.integer "product_id"
     t.integer "order_id"
@@ -79,15 +112,6 @@ ActiveRecord::Schema.define(version: 20180329011319) do
     t.datetime "updated_at", null: false
     t.index ["order_id"], name: "index_ordered_products_on_order_id"
     t.index ["product_id"], name: "index_ordered_products_on_product_id"
-  end
-
-  create_table "orders", force: :cascade do |t|
-    t.integer "customer_id"
-    t.decimal "total", precision: 20, scale: 2
-    t.decimal "taxes", precision: 20, scale: 2
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
   create_table "product_categories", force: :cascade do |t|
