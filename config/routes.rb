@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'checkout/index'
+
+  get 'checkout/show'
+
   get 'order_items/create'
 
   get 'order_items/update'
@@ -18,6 +22,8 @@ Rails.application.routes.draw do
   resource :carts, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]
   resources :charges
+  resources :checkout, only: [:index] do
+  end
 
   root to: 'products#index'
 

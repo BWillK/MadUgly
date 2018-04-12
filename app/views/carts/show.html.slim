@@ -1,5 +1,3 @@
 .shopping-cart
   = render "shopping_cart"
-  form action="your-server-side-code" method="POST"
-    script.stripe-button data-amount="999" data-currency="cad" data-description=("Example charge") data-image="https://stripe.com/img/documentation/checkout/marketplace.png" data-key="pk_test_HsFSjXVoUrQyTBUFElmhaC8e" data-locale="auto" data-name=("Demo Site") src="https://checkout.stripe.com/checkout.js"
-
+  = button_to "Checkout", checkout_index_path, method: "get"

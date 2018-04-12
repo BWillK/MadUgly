@@ -1,6 +1,7 @@
 class ChargesController < ApplicationController
   def new
     @order_items = current_order.order_items
+    @amount = current_order.order_items.total_price * 100
   end
 
   def create
@@ -8,16 +9,16 @@ class ChargesController < ApplicationController
     # Amount in cents
     @amount = (@order_items.total_price * 100)
 
-    customer = Stripe::Customer.create(
+    @customer = Stripe::Customer.create(
         :email => params[:stripeEmail],
         :source  => params[:stripeToken]
     )
 
-    charge = Stripe::Charge.create(
+    @charge = Stripe::Charge.create(
         :customer    => customer.id,
         :amount      => @amount,
         :description => 'Charge for fashion at MADUgly',
-        :currency    => 'usd'
+        :currency    => 'cad'
     )
 
   rescue Stripe::CardError => e
