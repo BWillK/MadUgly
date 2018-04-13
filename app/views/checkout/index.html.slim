@@ -1,0 +1,26 @@
+h1 Checkout#index
+p Total before tax is #{current_order.subtotal}
+/ = form_tag do |f|
+/   = f.text_field :first_name
+/   = f.text_field :last_name
+/   = f.text_field :address_street
+/   = f.text_field :address_postal_code
+/   = f.text_field :address_province
+/   = f.text_field :address_country
+/   = f.submit "Create"
+
+
+
+form action="checkout" method="POST"
+  script.stripe-button (
+    data-amount=@amount
+    data-currency="cad"
+    data-description="Order from MADUgly"
+    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+    data-key="pk_test_HsFSjXVoUrQyTBUFElmhaC8e"
+    data-locale="auto"
+    data-name="MADUgly"
+    data-zip-code=true
+    data-billing-address= true
+    data-shipping-address= true
+    src="https://checkout.stripe.com/checkout.js")

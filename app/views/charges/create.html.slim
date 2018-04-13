@@ -1,4 +1,4 @@
 h2
   | Thanks, you paid
   = succeed "!" do
-    strong #{@order_items.total_price}
+    strong #{number_to_currency(current_order.total_price)}
